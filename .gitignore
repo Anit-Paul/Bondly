@@ -1,0 +1,45 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Django migrations (optional: keep __init__.py)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Database files (you use MySQL, so ignore SQLite)
+*.sqlite3
+
+# Media & static (optional)
+media/
+staticfiles/
+
+# Logs
+*.log
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# MySQL client files (if any)
+*.sql
+*.dump
