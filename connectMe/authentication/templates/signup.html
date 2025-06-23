@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>connectMe</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}" />
+</head>
+
+<body>
+    <div class="container">
+        <h3>Create Your connectMe account </h3>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="mail">
+                <input type="email" class="email" placeholder="Email Address" name="email" required />
+                <button class="send">Send Otp</button>
+            </div>
+
+            <div class="verification">
+                <input type="text" class="otp" placeholder="Password" name="Enter your OTP" name="otp" required
+                    disabled />
+                <button id="verify" disabled>Verify</button>
+            </div>
+
+            <input type="password" class="password1" placeholder="Enter your password" name="password" required
+                disabled />
+            <input type="password" class="password2" placeholder="Confirm password" name="Confirm password" required
+                disabled />
+            <button type="submit" class="signin">signin</button>
+        </form>
+        <br>
+        <p>Already have an account? <a href="#">Log in</a></p>
+    </div>
+
+    <script src="{% static 'signup.js' %}?v=2"></script>
+</body>
+
+</html>
