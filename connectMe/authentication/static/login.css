@@ -1,0 +1,98 @@
+/* Reset some defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+p {
+  color: #000; /* Black text */
+  margin-top: 10px;
+}
+
+p a {
+  color: #ff6600; /* Orange link */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+p a:hover {
+  color: #cc5200; /* Darker orange on hover */
+ 
+}
+
+a {
+  display: inline-block;
+  margin: 10px 0;
+  color: #ff6600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #cc5200;
+  
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+/* Hover effect */
+input[type="email"]:hover,
+input[type="password"]:hover {
+  border-color: #3399ff; /* Soft blue */
+}
+
+/* Focus effect (keep orange for focus) */
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #ff6600;
+}
+
+
+button.login {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.login:hover {
+  background-color: #ee843e;
+}
