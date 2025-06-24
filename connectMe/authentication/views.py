@@ -4,7 +4,7 @@ from .models import User
 from .serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework import status
-from django.contrib.auth import authenticate,login as django_login
+from django.contrib.auth import authenticate,login as django_login,logout as django_logout
 from django.contrib.auth.models import update_last_login
 
 def login(request):
@@ -65,3 +65,11 @@ class loginAPI(APIView):
                 return Response({"message": "Account is inactive. Please verify or contact support."}, status=status.HTTP_403_FORBIDDEN)
 
         return Response({"message": "Login failed! Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+
+class logoutAPI(APIView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            django_logout(request)
+            return Response({"message": "Logout successful."}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "User not logged in."}, status=status.HTTP_400_BAD_REQUEST)
