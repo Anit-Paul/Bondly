@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <div id="customAlert" class="hidden alert"></div>
     <div class="container">
         <h3>Create Your connectMe account </h3>
 
@@ -21,7 +22,7 @@
             </div>
 
             <div class="verification">
-                <input type="text" class="otp" placeholder="Password" name="Enter your OTP" name="otp" required
+                <input type="text" class="otp" placeholder="Enter your OTP" name="otp" required
                     disabled />
                 <button id="verify" disabled>Verify</button>
             </div>
@@ -30,7 +31,7 @@
                 disabled />
             <input type="password" class="password2" placeholder="Confirm password" name="Confirm password" required
                 disabled />
-            <button type="submit" class="signin">signin</button>
+            <button type="submit" class="signin" disabled>signin</button>
         </form>
         <br>
         <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
