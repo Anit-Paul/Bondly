@@ -5,7 +5,7 @@ function customAlert(msg) {
 
   const child = document.createElement("p");
   child.textContent = msg;
-  child.style.color = "white"; 
+  child.style.color = "white";
 
   alt.appendChild(child);
 
@@ -17,7 +17,14 @@ function customAlert(msg) {
 
 //for calling login API
 async function callingLoginAPI(email, password) {
-  return email == "anit42655@gmail.com" && password == "1234";
+  const response = await fetch("http://127.0.0.1:8000/loginAPI/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: email, password: password }),
+  });
+  return response;
 }
 
 document.querySelector(".login").addEventListener("click", async (e) => {
@@ -25,9 +32,9 @@ document.querySelector(".login").addEventListener("click", async (e) => {
   const email = document.querySelector(".email").value.trim();
   const password = document.querySelector(".password").value.trim();
   const response = await callingLoginAPI(email, password);
-  if (response) {
+  if (response.ok) {
     console.log("welcome to home page"); //redirect to home page
   } else {
-    customAlert("invalid credentials");
+    customAlert("invalid credentials ! please enter a valid login credentials..");
   }
 });

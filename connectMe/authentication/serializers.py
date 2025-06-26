@@ -27,3 +27,21 @@ class UserSerializer(ModelSerializer):
             user.interest.set(interests)
 
         return user
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+        interests = validated_data.pop('interest', None)
+
+        # Update basic fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # Handle password
+        if password:
+            instance.set_password(password)
+
+        # Handle interests
+        if interests is not None:
+            instance.interest.set(interests)
+
+        instance.save()
+        return instance
