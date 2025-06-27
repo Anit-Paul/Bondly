@@ -56,6 +56,7 @@ document.querySelector("#verify").addEventListener("click",async (e)=>{
 
 document.querySelector(".signin").addEventListener("click", async (e) =>{
     e.preventDefault()
+    const email=document.querySelector(".email").value.trim()
     password1=document.querySelector(".password1").value.trim()
     password2=document.querySelector(".password2").value.trim()
     if(password1!=password2){
@@ -64,7 +65,9 @@ document.querySelector(".signin").addEventListener("click", async (e) =>{
     }
     const response=await callSigninAPI()
     if(response){
-        console.log("welcome")
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("password", password1);
+        window.location.href="/accountsetup"
     }
     else{
         customAlert("something went wrong please try after some time!")

@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}" />
+  </head>
+
+  <body>
+    <div id="customAlert" class="hidden alert"></div>
+    <div class="wrapper">
+      <main class="main-content">
+        <h1>Create Your connectMe Profile</h1>
+        <p>
+          Join our community by setting up your personalized profile. Share your
+          passions and connect with others!
+        </p>
+
+        <section class="card">
+          <h2>Personal Information</h2>
+          <form>
+            <div class="grid-2">
+              <input type="text" name="username" class="name" placeholder="Full Name" />
+              <input type="date" name="dob" class="dob" placeholder="Date of Birth" />
+              <select name="gender" class="gender">
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>Profile Visuals</h2>
+          <div class="visuals">
+            <div>
+              <label>Profile Picture</label>
+              <div class="img-upload" name="image">+</div>
+              <small>Recommended: 160x160px</small>
+            </div>
+            <div>
+              <label>Background Picture</label>
+              <div class="background-img-upload" name="banner">+</div>
+              <small>Recommended: 800x200px</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Interests & Hobbies</h2>
+          <p class="selection-instruction">
+            Select at least 3 interests. We'll use these to connect you with
+            communities and suggest relevant content.
+          </p>
+
+          <div class="tags-container">
+            <div class="interest-category">
+              <h3 class="category-title">🎨 Arts & Culture</h3>
+              <div class="tag-group">
+                <span class="interest-tag" data-value="drawing"
+                  >Drawing/Sketching</span
+                >
+                <span class="interest-tag" data-value="photography"
+                  >Photography</span
+                >
+                <span class="interest-tag" data-value="painting">Painting</span>
+                <span class="interest-tag" data-value="digital-art"
+                  >Digital Art</span
+                >
+                <span class="interest-tag" data-value="sculpture"
+                  >Sculpture</span
+                >
+                <span class="interest-tag" data-value="art-history"
+                  >Art History</span
+                >
+                <span class="interest-tag" data-value="museums"
+                  >Museum Visits</span
+                >
+                <span class="interest-tag" data-value="crafts">Crafts/DIY</span>
+              </div>
+            </div>
+
+            <div class="interest-category">
+              <h3 class="category-title">🎵 Music & Performance</h3>
+              <div class="tag-group">
+                <span class="interest-tag" data-value="singing"
+                  >Singing/Vocal</span
+                >
+                <span class="interest-tag" data-value="guitar">Guitar</span>
+                <span class="interest-tag" data-value="piano">Piano/Keys</span>
+                <span class="interest-tag" data-value="drums">Drums</span>
+                <span class="interest-tag" data-value="djing"
+                  >DJing/Electronic</span
+                >
+                <span class="interest-tag" data-value="songwriting"
+                  >Songwriting</span
+                >
+                <span class="interest-tag" data-value="dance">Dance</span>
+                <span class="interest-tag" data-value="theater"
+                  >Theater/Acting</span
+                >
+              </div>
+            </div>
+
+            <div class="interest-category">
+              <h3 class="category-title">🏃 Sports & Fitness</h3>
+              <div class="tag-group">
+                <span class="interest-tag" data-value="running"
+                  >Running/Jogging</span
+                >
+                <span class="interest-tag" data-value="weightlifting"
+                  >Weightlifting</span
+                >
+                <span class="interest-tag" data-value="yoga">Yoga/Pilates</span>
+                <span class="interest-tag" data-value="cycling">Cycling</span>
+                <span class="interest-tag" data-value="swimming">Swimming</span>
+                <span class="interest-tag" data-value="basketball"
+                  >Basketball</span
+                >
+                <span class="interest-tag" data-value="soccer">Soccer</span>
+                <span class="interest-tag" data-value="tennis">Tennis</span>
+                <span class="interest-tag" data-value="hiking"
+                  >Hiking/Outdoors</span
+                >
+                <span class="interest-tag" data-value="martial-arts"
+                  >Martial Arts</span
+                >
+              </div>
+            </div>
+
+            <div class="interest-category">
+              <h3 class="category-title">💻 Technology & Gaming</h3>
+              <div class="tag-group">
+                <span class="interest-tag" data-value="programming"
+                  >Programming</span
+                >
+                <span class="interest-tag" data-value="web-dev"
+                  >Web Development</span
+                >
+                <span class="interest-tag" data-value="mobile-dev"
+                  >Mobile Development</span
+                >
+                <span class="interest-tag" data-value="ai-ml"
+                  >AI/Machine Learning</span
+                >
+                <span class="interest-tag" data-value="data-science"
+                  >Data Science</span
+                >
+                <span class="interest-tag" data-value="cybersecurity"
+                  >Cybersecurity</span
+                >
+                <span class="interest-tag" data-value="pc-gaming"
+                  >PC Gaming</span
+                >
+                <span class="interest-tag" data-value="console-gaming"
+                  >Console Gaming</span
+                >
+                <span class="interest-tag" data-value="vr-ar">VR/AR</span>
+                <span class="interest-tag" data-value="esports">Esports</span>
+              </div>
+            </div>
+
+            <div class="interest-category">
+              <h3 class="category-title">📚 Learning & Knowledge</h3>
+              <div class="tag-group">
+                <span class="interest-tag" data-value="reading">Reading</span>
+                <span class="interest-tag" data-value="writing"
+                  >Writing/Blogging</span
+                >
+                <span class="interest-tag" data-value="languages"
+                  >Language Learning</span
+                >
+                <span class="interest-tag" data-value="history">History</span>
+                <span class="interest-tag" data-value="philosophy"
+                  >Philosophy</span
+                >
+                <span class="interest-tag" data-value="psychology"
+                  >Psychology</span
+                >
+                <span class="interest-tag" data-value="science">Science</span>
+                <span class="interest-tag" data-value="astronomy"
+                  >Astronomy</span
+                >
+              </div>
+            </div>
+
+            <div class="interest-category">
+              <h3 class="category-title">🍳 Lifestyle</h3>
+              <div class="tag-group">
+                <span class="interest-tag" data-value="cooking">Cooking</span>
+                <span class="interest-tag" data-value="baking">Baking</span>
+                <span class="interest-tag" data-value="mixology"
+                  >Mixology/Cocktails</span
+                >
+                <span class="interest-tag" data-value="travel">Travel</span>
+                <span class="interest-tag" data-value="fashion"
+                  >Fashion/Style</span
+                >
+                <span class="interest-tag" data-value="gardening"
+                  >Gardening</span
+                >
+                <span class="interest-tag" data-value="parenting"
+                  >Parenting</span
+                >
+                <span class="interest-tag" data-value="minimalism"
+                  >Minimalism</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="selected-interests">
+            <div class="selection-header">
+              <h4 class="selection-title">Your Selected Interests</h4>
+              <span class="selection-count"
+                ><span id="selected-count">0</span>/10 selected</span
+              >
+            </div>
+            <p class="selection-message" name="interest">
+              Minimum 3 interests required
+            </p>
+            <div class="selected-tags" id="selected-tags-container"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>About Me</h2>
+          <textarea
+            rows="5"
+            name="about"
+            placeholder="Tell us about yourself... (passions, goals, etc.)"
+          ></textarea>
+        </section>
+
+        <button class="submit">Create Profile</button>
+      </main>
+    </div>
+  </body>
+  <script src="{% static 'index.js' %}?v=2"></script>
+</html>

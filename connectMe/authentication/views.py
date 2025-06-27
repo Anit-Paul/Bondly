@@ -7,6 +7,12 @@ from rest_framework import status
 from django.contrib.auth import authenticate,login as django_login,logout as django_logout
 from django.contrib.auth.models import update_last_login
 
+
+
+
+def test(request):
+    return render(request,'index.html')
+
 def login(request):
     return render(request,'login.html')
 
@@ -51,7 +57,7 @@ class loginAPI(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
-
+        print(email,password)
         if not email or not password:
             return Response({"message": "Email and password are required."}, status=status.HTTP_400_BAD_REQUEST)
 

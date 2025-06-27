@@ -30,7 +30,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
     username = models.CharField(max_length=20)
     about = models.CharField(max_length=50, default="", blank=True)
-    gender = models.CharField(max_length=10, default="", blank=True)
+    gender = models.CharField(max_length=10, default="", blank=True,null=True)
     dob = models.DateField(null=True, blank=True)
     image=models.ImageField(upload_to='profile_images/', blank=True, null=True)
     banner=models.ImageField(upload_to='profile_images/', blank=True, null=True)

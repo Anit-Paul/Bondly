@@ -26,8 +26,15 @@ function customAlert(msg) {
     }, 3000);
 }
 
-async function callSigninAPI() {
-    return true;
+async function callSigninAPI(email,password) {
+    const response=await fetch("http://127.0.0.1:8000/signupAPI/",{
+        method:'PATCH',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({email:email,password:password}) 
+    })
+    return response;
 }
 
 document.querySelector(".send").addEventListener("click", async (e) => {
@@ -61,17 +68,17 @@ document.querySelector("#verify").addEventListener("click", async (e) => {
 
 document.querySelector(".reset").addEventListener("click", async (e) => {
     e.preventDefault();
+    const email=document.querySelector(".email").value.trim()
     const password1 = document.querySelector(".password1").value.trim();
     const password2 = document.querySelector(".password2").value.trim();
+    
     if (password1 !== password2) {
         customAlert("Password and confirm password must match!");
         return;
     }
-
-    const response = await callSigninAPI();
-    if (response) {
-        customAlert("Password reset successful!");
-        // Optionally redirect or reset form
+    const response = await callSigninAPI(email,password1);
+    if (response.ok) {
+        window.location.href="/"
     } else {
         customAlert("Something went wrong. Please try again later.");
     }
