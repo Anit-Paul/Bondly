@@ -4,7 +4,8 @@ from .views import *
 urlpatterns = [
     path('',login,name='login'),
     path('signup/',signup,name='signup'),
-    path('accountsetup/',test,name='test'),
+    path('accountsetup/',accountSettings,name='accountSettings'),
+    path('otpAPI/',otpAPI.as_view(),name='otpAPI'),
     path('signupAPI/',signupAPI.as_view(),name='signupAPI'),
     path('loginAPI/',loginAPI.as_view(),name='loginAPI'),
     path('forgetPassword/',forgetPassword,name='forgetPassword'),

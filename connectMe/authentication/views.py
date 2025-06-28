@@ -6,11 +6,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate,login as django_login,logout as django_logout
 from django.contrib.auth.models import update_last_login
+from .mail import Mail
 
 
 
-
-def test(request):
+def accountSettings(request):
     return render(request,'index.html')
 
 def login(request):
@@ -57,7 +57,6 @@ class loginAPI(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
-        print(email,password)
         if not email or not password:
             return Response({"message": "Email and password are required."}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -79,3 +78,18 @@ class logoutAPI(APIView):
             return Response({"message": "Logout successful."}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "User not logged in."}, status=status.HTTP_400_BAD_REQUEST)
+        
+class otpAPI(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        check=request.data.get('check')
+        if check:
+            user = User.objects.get(email=email)
+            return Response({"message": "Another user is already using this email"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            st, otp = Mail().send_email(email)
+            if not st:
+                return Response({"message": "Please enter a valid email!"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Verification successful", "otp": otp}, status=status.HTTP_200_OK)
+
+    

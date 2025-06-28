@@ -1,12 +1,22 @@
+let otp=""
 async function callEmailAPI(email) {
-    if (email.length === 0) {
-        return false;
-    }
-    return true;
+  const response = await fetch("http://127.0.0.1:8000/otpAPI/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: email,check:false }),
+  });
+  data = await response.json();
+  if (response.ok) {
+    otp = data.otp;
+    return [true, data.message];
+  }
+  return [false, data.message];
 }
 
-async function verifyOTP(otp) {
-    return otp === "1234";
+async function verifyOTP(data) {
+    return data==otp;
 }
 
 function customAlert(msg) {
@@ -40,14 +50,14 @@ async function callSigninAPI(email,password) {
 document.querySelector(".send").addEventListener("click", async (e) => {
     e.preventDefault();
     const email = document.querySelector(".email").value.trim();
-    const response = await callEmailAPI(email);
+    const [response,msg] = await callEmailAPI(email);
     if (response) {
         document.querySelector(".otp").disabled = false;
         document.querySelector("#verify").disabled = false;
         document.querySelector(".email").disabled = true;
         document.querySelector(".send").disabled = true;
     } else {
-        customAlert("Please enter a valid email.");
+        customAlert(msg);
     }
 });
 
