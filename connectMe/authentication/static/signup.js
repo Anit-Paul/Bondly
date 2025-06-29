@@ -7,7 +7,9 @@ async function callEmailAPI(email) {
     },
     body: JSON.stringify({ email: email,check:true }),
   });
+  
   data = await response.json();
+  console.log(data)
   if (response.ok) {
     otp = data.otp;
     return [true, data.message];

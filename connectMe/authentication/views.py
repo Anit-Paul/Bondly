@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from rest_framework.views import APIView
 from .models import User
 from .serializers import UserSerializer
@@ -21,6 +21,9 @@ def signup(request):
 
 def forgetPassword(request):
     return render(request,'forgetPassword.html')
+
+def home(request):
+    return HttpResponse("welcome to home page")
 
 class signupAPI(APIView):
     def post(self,request):
@@ -82,14 +85,18 @@ class logoutAPI(APIView):
 class otpAPI(APIView):
     def post(self, request):
         email = request.data.get('email')
-        check=request.data.get('check')
+        check = request.data.get('check')
+
+        if not email:
+            return Response({"message": "Email is required."}, status=status.HTTP_400_BAD_REQUEST)
+
         if check:
-            user = User.objects.get(email=email)
-            return Response({"message": "Another user is already using this email"}, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            st, otp = Mail().send_email(email)
-            if not st:
-                return Response({"message": "Please enter a valid email!"}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({"message": "Verification successful", "otp": otp}, status=status.HTTP_200_OK)
+            if User.objects.filter(email=email).exists():
+                return Response({"message": "Another user is already using this email"}, status=status.HTTP_400_BAD_REQUEST)
+        # Send email
+        st, otp = Mail().send_email(email)
+        if not st:
+            return Response({"message": "Please enter a valid email!"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": "Verification successful", "otp": otp}, status=status.HTTP_200_OK)
 
     

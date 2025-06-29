@@ -9,5 +9,5 @@ urlpatterns = [
     path('signupAPI/',signupAPI.as_view(),name='signupAPI'),
     path('loginAPI/',loginAPI.as_view(),name='loginAPI'),
     path('forgetPassword/',forgetPassword,name='forgetPassword'),
-    
+    path('home/',home,name='home'),
 ]

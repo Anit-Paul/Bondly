@@ -90,6 +90,7 @@ document.querySelector(".reset").addEventListener("click", async (e) => {
     if (response.ok) {
         window.location.href="/"
     } else {
-        customAlert("Something went wrong. Please try again later.");
+        data=await response.json()
+        customAlert(data.message);
     }
 });

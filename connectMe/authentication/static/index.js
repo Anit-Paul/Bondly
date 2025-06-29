@@ -132,13 +132,11 @@ document.querySelector(".submit").addEventListener("click", async (e) => {
   const username = document.querySelector(".name")?.value.trim() || null;
   const dob = document.querySelector(".dob")?.value.trim() || null;
   let gender = document.querySelector(".gender")?.value.trim() || null;
-  if(gender=="Select Gender"){
-    gender=null;
-  }
+  if (gender === "Select Gender") gender = null;
   const about = document.querySelector("textarea[name='about']")?.value.trim() || null;
 
-  if (!username) {
-    customAlert("Please give your full name.");
+  if (!username || !dob) {
+    customAlert("Please enter all required fields.");
     return;
   }
 
@@ -146,39 +144,29 @@ document.querySelector(".submit").addEventListener("click", async (e) => {
   formData.append("email", email);
   formData.append("password", password);
   formData.append("username", username);
-  if(!dob){
-    customAlert("you should give dob")
-    return;
-  }
   formData.append("dob", dob);
   formData.append("gender", gender);
-  formData.append("about", about);  
-  formData.append("is_active", true)
-  if (image) {
-    formData.append("image", image);
-  } else {
-    formData.append("image", "");
-  }
+  formData.append("about", about);
+  formData.append("is_active", true);
 
-  if (banner) {
-    formData.append("banner", banner);
-  } else {
-    formData.append("banner", "");
-  }
+  if (image) formData.append("image", image);
+  if (banner) formData.append("banner", banner);
 
+  // ✅ Send interest list as JSON string
   if (selectedInterests.length > 0) {
-  selectedInterests.forEach((interest) => {
-    formData.append("interest", interest);
+    formData.append("interest", JSON.stringify(selectedInterests));
+  }
+
+  const response = await fetch("http://127.0.0.1:8000/signupAPI/", {
+    method: "POST",
+    body: formData,
   });
-} 
-  const response=await callSigninUpAPI(formData)
-  data=await response.json()
-  console.log(data)
-  if(response.ok){
-    sessionStorage.removeItem("email");
-    sessionStorage.removeItem("password")
-    console.log("welcome to home page")
-  }else{
-    customAlert(data.message)
+
+  const data = await response.json();
+  if (response.ok) {
+    sessionStorage.clear();
+    window.location.href = "/home";
+  } else {
+    customAlert(data.message);
   }
 });

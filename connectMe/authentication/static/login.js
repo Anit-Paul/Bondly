@@ -33,7 +33,7 @@ document.querySelector(".login").addEventListener("click", async (e) => {
   const password = document.querySelector(".password").value.trim();
   const response = await callingLoginAPI(email, password);
   if (response.ok) {
-    console.log("welcome to home page"); //redirect to home page
+    window.location.href="/home" //redirect to home page
   } else {
     customAlert("invalid credentials ! please enter a valid login credentials..");
   }
